@@ -1,0 +1,136 @@
+---
+title: "Gestures Tab"
+description: "Create, save, preview, and execute custom multi-pointer gestures using the visual Gesture Builder."
+---
+
+The Gestures tab lets you build custom gestures with precise pointer control, save them for reuse,
+and execute them against the active session. When you first open the tab, the Saved Gestures list
+is empty.
+
+## Saved gestures
+
+The saved gestures list displays all gestures you have created or imported. Two buttons at the
+bottom of the list let you add gestures:
+
+- **Create New Gesture** — opens the [Gesture Builder](#gesture-builder)
+- **Import from File** — opens a file browser for uploading previously exported gesture JSON files.
+  Multiple files can be imported at once.
+
+Once a gesture is saved, hovering over its entry in the list shows a **preview overlay** on the
+screenshot that visualises the gesture's pointer paths.
+
+Each saved gesture has four action buttons:
+
+| Button | Description |
+|--------|-------------|
+| Execute | Runs the gesture on the device immediately |
+| Edit | Opens the gesture in the Gesture Builder |
+| Export JSON | Saves the gesture as a JSON file for sharing or backup |
+| Delete | Permanently removes the gesture from the list |
+
+## Gesture Builder
+
+The Gesture Builder opens when you create a new gesture or edit an existing one. Most Screenshot
+Panel header buttons are disabled while the builder is open.
+
+The builder is divided into four sections: Header, Gesture Timeline, Pointer Tabs, and Pointer
+Actions.
+
+### Header
+
+The header contains the gesture's metadata and top-level controls:
+
+- **Title and description** — click either field to edit it inline
+- **Coordinate units** — a two-button toggle to select the unit system for X/Y coordinates in Move
+  actions:
+  - **Relative (%)** — coordinates expressed as a percentage of the screen dimensions (default)
+  - **Absolute (px)** — coordinates expressed as exact pixel values
+- **Play** — executes the current gesture on the device without saving
+- **Save As** — saves the gesture under the current title as a new entry
+- **Save** — overwrites the previously saved version (only enabled when editing an existing gesture)
+
+### Gesture Timeline
+
+The Gesture Timeline is a visual representation of all pointer actions in the gesture, displayed as
+a row of icons below the header. Each icon represents one action type in sequence.
+
+When creating a new gesture, the timeline shows a single red question mark indicating an undefined
+action. As you add and configure pointer actions, the timeline updates to reflect the full sequence.
+Each pointer in a multi-pointer gesture appears as a separate row in the timeline.
+
+### Pointer Tabs
+
+The Pointer Tabs show how many simultaneous pointers the gesture uses. By default a new gesture
+starts with one pointer, but you can add up to **5 pointers** in a single gesture. Each pointer is
+identified by a unique colour that appears both on its tab and in the Screenshot Panel preview.
+Pointer titles can be edited by clicking them.
+
+### Pointer Actions
+
+Pointer actions define what each pointer does. Actions are displayed as rectangular cards, and
+cards can be added or removed freely. Use the **Action Type** dropdown on each card to select from
+the four supported action types.
+
+Valid action combinations are reflected live on the screenshot, showing the exact path and behaviour
+of the gesture before you execute it.
+
+#### Move
+
+The Move action positions the pointer at a specific location over a given duration.
+
+| Parameter | Description |
+|-----------|-------------|
+| Duration | How long the move takes, in milliseconds |
+| X coordinate | Horizontal target position (percentage or pixels, depending on the header setting) |
+| Y coordinate | Vertical target position (percentage or pixels, depending on the header setting) |
+
+<Tip>
+  Each Move action card has an **aim button** in its top-right corner. Enabling the aim button lets
+  you set the X and Y coordinates by clicking directly on the screenshot, rather than typing values
+  manually.
+</Tip>
+
+#### Pointer Down / Pointer Up
+
+These actions press or release the pointer at its current position. The only parameter is which
+pointer button to use — **left** or **right**. For touch pointers, the default left button applies.
+
+#### Pause
+
+The Pause action holds the pointer in place for a specified number of milliseconds before the next
+action runs.
+
+## Creating your first gesture
+
+<Steps>
+  <Step title="Open the Gesture Builder">
+    In the Gestures tab, click **Create New Gesture** to open the Gesture Builder.
+  </Step>
+  <Step title="Name your gesture">
+    Click the default title and description fields in the header and enter descriptive values.
+  </Step>
+  <Step title="Choose coordinate units">
+    Select **Relative (%)** if you want the gesture to work across different screen sizes, or
+    **Absolute (px)** for pixel-precise targeting on a specific device.
+  </Step>
+  <Step title="Add a Move action">
+    In the Pointer Actions area, set the Action Type to **Move**. Enable the aim button and click
+    the starting position on the screenshot to set the X and Y coordinates. Set a short duration
+    such as `0` ms for an instant move to the starting point.
+  </Step>
+  <Step title="Add a Pointer Down action">
+    Add a new action card and set its type to **Pointer Down** to press the pointer at the current
+    location.
+  </Step>
+  <Step title="Add a second Move action">
+    Add another Move action card. Use the aim button to click the end point of your swipe on the
+    screenshot. Set a duration of around `500` ms for a smooth movement.
+  </Step>
+  <Step title="Add a Pointer Up action">
+    Add a final action card and set its type to **Pointer Up** to release the pointer.
+  </Step>
+  <Step title="Play and save">
+    Click **Play** to test the gesture on the device. If the result looks correct, click **Save As**
+    to save it to your Saved Gestures list.
+  </Step>
+</Steps>

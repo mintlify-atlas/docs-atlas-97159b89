@@ -1,0 +1,89 @@
+---
+title: "Screenshot Panel"
+description: "Interact with the device screen through static or MJPEG live screenshots, element highlighting, and tap/swipe controls."
+---
+
+The Screenshot Panel occupies the left side of the Session Inspector. It displays the current device
+screen and provides several ways to interact with it.
+
+The panel automatically adapts to the screenshot dimensions and orientation. The Inspector adjusts
+the panel size up to the full window height or 40% of the window width, whichever is reached first.
+
+<Note>
+  Handling of multiple screenshots for multi-screen devices is not currently supported. Only a
+  single screen is displayed at a time.
+</Note>
+
+## Screenshot modes
+
+By default, the screenshot is a **static image** that is only updated when a refresh is triggered —
+for example, when you interact with an element, tap the screen, or press the Refresh button in the
+header. Interactions you perform directly on the device (outside of the Inspector) will not cause
+the screenshot to update automatically.
+
+<Tip>
+  To have the screenshot automatically mirror the device screen at all times — even when
+  interacting with the device outside of the Inspector — use MJPEG session capabilities such as
+  `appium:mjpegServerPort`. This enables a live video stream in the screenshot panel.
+</Tip>
+
+The panel supports screenshots in any orientation:
+
+| Orientation | Behavior |
+|-------------|----------|
+| Portrait | Panel adjusts to fit the taller layout |
+| Landscape | Panel widens to accommodate the rotated screenshot |
+
+## Screenshot panel header
+
+The panel header contains several buttons for controlling the screenshot and its interaction
+behaviour.
+
+### Screenshot Origin
+
+<Info>
+  The Screenshot Origin buttons are only shown when MJPEG screenshotting capabilities such as
+  `appium:mjpegServerPort` are active.
+</Info>
+
+When using MJPEG mode, two origin buttons let you switch the source of the rendered screenshot
+between:
+
+- **MJPEG** — the live video stream from the MJPEG server
+- **W3C** — the standard W3C WebDriver screenshot endpoint
+
+This is useful if the MJPEG server becomes unreachable or has streaming issues, allowing you to fall
+back to static W3C screenshots without ending your session.
+
+### Toggle Element Handles
+
+The Toggle Element Handles button shows or hides **highlighter handles** for every element
+identified in the current page source.
+
+<Info>
+  Highlighter handles are only visible when [Element Mode](#interaction-mode) is active.
+</Info>
+
+Each handle is a coloured overlay drawn over the element's bounds on the screenshot. When multiple
+elements overlap at the same coordinates, their individual handles are merged into a single
+**group handle** marked with a `+` symbol. Clicking the group handle expands it to reveal the
+individual handles underneath, allowing you to select each overlapping element separately.
+
+### Interaction Mode
+
+Two mode buttons let you choose how clicking on the screenshot behaves:
+
+| Mode | Behaviour |
+|------|-----------|
+| **Element Mode** (default) | Hovering highlights detected elements. Clicking a highlighted element selects it in the Source tab and opens its details in the Selected Element panel. |
+| **Coordinates Mode** | A coordinates overlay appears in the top-left corner of the screenshot. Hovering updates the overlay with the device screen coordinates under the cursor. Clicking executes a tap, and dragging executes a swipe, directly on the device. |
+
+### Download Screenshot
+
+The Download Screenshot button saves the currently displayed screenshot to your computer as a
+`.PNG` file.
+
+<Info>
+  This button is disabled when using MJPEG screenshotting capabilities such as
+  `appium:mjpegServerPort`, because the live stream does not produce a single static file.
+</Info>

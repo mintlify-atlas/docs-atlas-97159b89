@@ -1,0 +1,46 @@
+---
+title: "Session Information"
+description: "Review active session details including session ID, capabilities, and server info, and copy session boilerplate code."
+---
+
+The Session Information tab provides a reference for the current state of the active session. It is
+divided into two parts: informational tables at the top and session boilerplate code at the bottom.
+
+## Informational tables
+
+The tables at the top of the tab display general information about the session:
+
+- **Session Details** — includes the session ID and other runtime details returned by the server.
+  This sub-table can be scrolled to view all fields.
+- **Server Details** — includes the server URL and related connection information. This sub-table
+  can also be scrolled for additional entries.
+- **Capabilities** — lists all capabilities used to create the session.
+
+## Session boilerplate
+
+<Note>
+  The boilerplate code shown here is the equivalent of what you would write to programmatically
+  start this exact session, using the same server, the same capabilities, and the same client
+  framework. It is a self-contained starting point for building a test script around your current
+  session configuration.
+</Note>
+
+The boilerplate code block at the bottom of the tab provides a complete, runnable example for
+creating a session with the current server and capability settings. It includes all necessary
+imports, driver initialisation, and teardown in a single file.
+
+This is the same boilerplate shown in the [Recorder tab](/session-inspector/recorder) when the
+boilerplate toggle is enabled.
+
+### Copying and language selection
+
+- The **copy button** in the top-right corner of the code block copies the boilerplate to the
+  clipboard.
+- The **language dropdown** lets you change the target client framework. The same set of languages
+  available in the Recorder tab applies here.
+
+### Use case
+
+The Session Information tab is the quickest way to bootstrap a new test file for the session you
+are currently inspecting. Copy the boilerplate, paste it into your project, and use it as the
+foundation for writing test steps — the session setup is already done for you.

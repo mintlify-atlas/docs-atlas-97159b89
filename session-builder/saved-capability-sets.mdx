@@ -1,0 +1,61 @@
+---
+title: "Saved Capability Sets"
+description: "Save, load, edit, export, and import named capability sets for quick reuse across Appium Inspector sessions."
+---
+
+The **Saved Capability Sets** tab lists all capability sets you have saved for future use. Saved sets are stored locally on your device and persist between Inspector sessions.
+
+The tab is split into two halves by a draggable divider. You can resize either half by dragging the divider, or collapse the right half entirely.
+
+## Saving your first capability set
+
+<Steps>
+  <Step title="Build your capabilities">
+    Go to the **Capability Builder** tab and add the capabilities you want to save.
+  </Step>
+  <Step title="Click Save As">
+    In the footer of the Capability Builder tab, click the **Save As** button.
+  </Step>
+  <Step title="Enter a name">
+    Type a name for the capability set in the dialog that appears, then confirm.
+  </Step>
+  <Step title="Open the Saved Capability Sets tab">
+    Switch to the **Saved Capability Sets** tab. Your new set appears in the list on the left side, and the tab title updates to show the total number of saved sets.
+  </Step>
+</Steps>
+
+## List of saved sets
+
+The left side of the tab shows all saved capability sets. Clicking a set in the list populates the JSON structure on the right with that set's capabilities.
+
+Each row in the list has an **Actions** column with three buttons:
+
+| Button | Action |
+|--------|--------|
+| Open in Capability Builder | Loads the set's capabilities into the Capability Builder tab for editing or starting a session |
+| Export | Saves the set (together with the current server details) as an `.appiumsession` file |
+| Delete | Permanently removes the set from the list |
+
+At the bottom of the list, an **Import** button lets you load one or more previously exported `.appiumsession` files and add them to the saved sets list. You can select multiple files at once.
+
+<Tip>
+If you have the standalone desktop app installed, you can open an `.appiumsession` file directly from your file manager or command line. The Inspector will launch and load the file's details into the Capability Builder tab without adding it to the saved sets list.
+</Tip>
+
+## Capability JSON structure
+
+Selecting a saved set displays its capabilities in JSON format on the right side of the tab, identical to the view in the Capability Builder tab.
+
+You can also **rename** a saved set by clicking the set name in the JSON panel header and editing it inline.
+
+## Footer
+
+The footer in this tab is similar to the one in the Capability Builder tab, with one addition:
+
+- **Save** — appears when a saved set is selected and is enabled after you make any changes to its capabilities. Clicking it overwrites the saved set with the updated capabilities.
+- **Save As** — saves the current capabilities as a new set without modifying the selected one.
+- **Start Session** — starts an Inspector session using the selected set's capabilities and the current server details.
+
+## Storage
+
+Saved capability sets are stored locally on the device running Appium Inspector. They are not synced to any remote service. Use the **Export** and **Import** features to transfer sets between machines or share them with your team.

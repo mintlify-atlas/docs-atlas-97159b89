@@ -1,0 +1,76 @@
+---
+title: "Starting a Session"
+description: "Configure your Appium server connection and capabilities, then launch your first Inspector session."
+---
+
+When you open Appium Inspector, you land on the **Session Builder** screen. This is where you configure the connection to your Appium server and define the session capabilities.
+
+## Step 1: Configure server details
+
+At the top of the Session Builder is the [Server Details](/session-builder/server-details) section.
+
+**Connecting to a local Appium server:** If your Appium server is running locally on its default port, you can leave all server fields unchanged. The Inspector defaults to `http://127.0.0.1:4723/`, which matches the Appium server's own defaults.
+
+**Connecting to a remote or cloud server:** If your server uses a different host, port, or path — or if you're using a cloud provider like Sauce Labs or BrowserStack — update the fields accordingly. Click **Select Cloud Providers** to add a cloud provider tab with its specific configuration fields.
+
+## Step 2: Add session capabilities
+
+The [Capability Builder](/session-builder/capability-builder) takes up most of the Session Builder screen. This is where you define the Appium session [capabilities](https://appium.io/docs/en/latest/guides/caps/).
+
+<Warning>
+  Appium requires certain mandatory capabilities. Starting a session without any capabilities will fail.
+</Warning>
+
+You can add capabilities one by one using the form fields, or switch to JSON mode to paste a full capability object. Here are minimal starting capability sets for common drivers:
+
+<Tabs>
+  <Tab title="Android (UiAutomator2)">
+    ```json
+    {
+      "platformName": "Android",
+      "appium:automationName": "UiAutomator2"
+    }
+    ```
+    See the [UiAutomator2 driver documentation](https://github.com/appium/appium-uiautomator2-driver#general) for the full list of capabilities.
+  </Tab>
+  <Tab title="iOS (XCUITest)">
+    ```json
+    {
+      "platformName": "iOS",
+      "appium:automationName": "XCUITest",
+      "appium:udid": "<device udid>"
+    }
+    ```
+    See the [XCUITest driver documentation](https://appium.github.io/appium-xcuitest-driver/latest/capabilities) for the full list of capabilities.
+  </Tab>
+  <Tab title="macOS (Mac2)">
+    ```json
+    {
+      "platformName": "Mac",
+      "appium:automationName": "Mac2"
+    }
+    ```
+    See the [Mac2 driver documentation](https://github.com/appium/appium-mac2-driver#capabilities) for the full list of capabilities.
+  </Tab>
+</Tabs>
+
+<Tip>
+  The Inspector automatically adds the `appium:` vendor prefix to capabilities that are missing it when you start the session. You can disable this behavior via the checkbox at the bottom of the capability fields.
+</Tip>
+
+## Step 3: Start the session
+
+Once your server details and capabilities are set, click the **Start Session** button at the bottom of the screen.
+
+If the session starts successfully, the **Session Inspector** screen will open, showing your app's screenshot and page source. You're now ready to start inspecting.
+
+If something goes wrong, check the [Troubleshooting](/troubleshooting) page for common issues.
+
+<CardGroup cols={2}>
+  <Card title="Session Inspector" icon="magnifying-glass" href="/session-inspector/overview">
+    Learn about the screenshot, source, commands, and all other inspector features.
+  </Card>
+  <Card title="Capability Builder" icon="sliders" href="/session-builder/capability-builder">
+    Learn more about building and saving capability sets.
+  </Card>
+</CardGroup>

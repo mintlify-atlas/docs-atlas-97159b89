@@ -1,0 +1,65 @@
+---
+title: "Server Details"
+description: "Configure how Appium Inspector connects to an Appium server, including local server settings, advanced options, and cloud provider integrations."
+---
+
+The top section of the Session Builder screen is used to configure server details — how the Inspector should connect to the target Appium server.
+
+By default, the **Appium Server** tab is selected for connecting to a local or remote Appium server. You can also connect through a cloud provider by selecting one from the cloud providers panel.
+
+## Default server fields
+
+The default server configuration has four fields:
+
+| Field | Default | Description |
+|-------|---------|-------------|
+| **Remote Host** | `127.0.0.1` | The hostname or IP address of the Appium server |
+| **Remote Port** | `4723` | The port on which the server is listening |
+| **Remote Path** | `/` | The base path used to access the server's WebDriver endpoint |
+| **SSL** | Off | When enabled, the Inspector uses `https://` instead of `http://` |
+
+With the default values, the Inspector connects to:
+
+```
+http://127.0.0.1:4723/
+```
+
+If you have a locally-running Appium server launched with default parameters, you can leave all fields unchanged.
+
+## Advanced Settings
+
+Expanding the **Advanced Settings** panel exposes two additional options:
+
+- **Allow unauthorized certificates** — disables SSL certificate validation when connecting to servers with self-signed or untrusted certificates.
+- **Use Proxy** — when enabled, adds a proxy URL field. Enter the full proxy URL to route Inspector traffic through a proxy server.
+
+## Cloud providers
+
+Clicking the **Select Cloud Providers** button opens a panel listing all supported cloud service integrations. Selecting a provider adds a new tab next to the default **Appium Server** tab. Switching to the provider's tab replaces the default server fields with that provider's specific connection fields.
+
+<Note>
+  Each provider tab shows a different set of fields. Refer to your cloud provider's documentation for the exact values to enter.
+</Note>
+
+The following cloud providers are currently integrated:
+
+| Provider | Connection fields |
+|----------|-------------------|
+| Sauce Labs | Username, access key, data center (US-West, US-East, EU-Central) |
+| HeadSpin | API endpoint URL including your API token |
+| BrowserStack | Username and access key |
+| TestMu AI / LambdaTest | Username and access key |
+| TestingBot | API key and secret |
+| ExperiTest | URL and access key |
+| RobotQA | Connection credentials |
+| Remote TestKit / AppKitBox | Access token |
+| BitBar | API key |
+| Kobiton | Username and API key |
+| Perfecto | Cloud URL and security token |
+| pCloudy | Username, host, and access key |
+| Mobitru | API credentials |
+| TV Labs | API credentials |
+| Testcribe | API key |
+| Webmate | API credentials |
+| Fireflink Device Farm | API credentials |
+| RabbitQA | API key |

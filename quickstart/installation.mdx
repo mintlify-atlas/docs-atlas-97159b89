@@ -1,0 +1,129 @@
+---
+title: "Installation"
+description: "Install Appium Inspector as a standalone desktop app or as an Appium server plugin."
+---
+
+Appium Inspector is available in two formats. Choose the one that fits your workflow.
+
+<Tabs>
+  <Tab title="Desktop App">
+    Download the standalone desktop app from the [GitHub Releases page](https://github.com/appium/appium-inspector/releases). Choose the file format for your operating system.
+
+    <Tabs>
+      <Tab title="macOS">
+        Download the `.dmg` file — it supports [automatic update checking](/menu-bar#update-checker).
+
+        <Steps>
+          <Step title="Open the DMG">
+            Double-click the downloaded `.dmg` file. A window opens showing the Appium Inspector icon and the Applications folder.
+          </Step>
+          <Step title="Drag to Applications">
+            Drag the Appium Inspector icon onto the Applications folder to install it.
+          </Step>
+          <Step title="Handle the security warning">
+            Because the app is not yet notarized by Apple, macOS will block it the first time you open it. Run this command in Terminal to remove the quarantine flag:
+
+            ```bash
+            xattr -cr "/Applications/Appium Inspector.app"
+            ```
+
+            After running the command, open the app normally.
+
+            <Info>
+              On **macOS Sequoia or later**, you can also go to **System Settings → Privacy & Security** and click **Open Anyway** next to the Appium Inspector entry.
+            </Info>
+          </Step>
+        </Steps>
+
+        **Homebrew (community-supported)**
+
+        <Warning>
+          Homebrew installation is deprecated and will be disabled on September 1st, 2026, because the app is not notarized.
+        </Warning>
+
+        ```bash
+        brew install --cask appium-inspector
+        ```
+      </Tab>
+      <Tab title="Windows">
+        Download the `.exe` installer — it supports [automatic update checking](/menu-bar#update-checker).
+
+        <Steps>
+          <Step title="Unblock the installer">
+            Because the app is not code-signed, Windows will show a security warning. To bypass it:
+
+            1. Right-click the `.exe` file and select **Properties**.
+            2. At the bottom of the window, check the **Unblock** checkbox.
+            3. Click **OK**.
+          </Step>
+          <Step title="Run the installer">
+            Double-click the installer and follow the prompts. If Windows SmartScreen still appears, click **More info** then **Run anyway**.
+          </Step>
+          <Step title="Launch Appium Inspector">
+            Find Appium Inspector in the Start menu and launch it.
+          </Step>
+        </Steps>
+
+        **WinGet (community-supported)**
+
+        ```bash
+        winget install AppiumDevelopers.AppiumInspector
+        ```
+      </Tab>
+      <Tab title="Linux">
+        Download the `.AppImage` file — it supports [automatic update checking](/menu-bar#update-checker).
+
+        <Steps>
+          <Step title="Make the file executable">
+            ```bash
+            chmod a+x Appium-Inspector-<version>-linux-<arch>.AppImage
+            ```
+          </Step>
+          <Step title="Run the app">
+            ```bash
+            ./Appium-Inspector-<version>-linux-<arch>.AppImage
+            ```
+          </Step>
+        </Steps>
+      </Tab>
+    </Tabs>
+  </Tab>
+  <Tab title="Appium Plugin">
+    The Inspector can be run as an Appium server plugin, making it accessible in any browser.
+
+    <Steps>
+      <Step title="Install the plugin">
+        <CodeGroup>
+          ```bash Appium 3
+          appium plugin install inspector
+          ```
+          ```bash Appium 2 (last compatible version)
+          appium plugin install --source=npm appium-inspector-plugin@2025.7.3
+          ```
+        </CodeGroup>
+      </Step>
+      <Step title="Start Appium with the plugin enabled">
+        ```bash
+        appium --use-plugins=inspector
+        ```
+      </Step>
+      <Step title="Open Inspector in your browser">
+        Navigate to the Inspector URL (adjust host/port to match your server):
+
+        ```
+        http://127.0.0.1:4723/inspector
+        ```
+
+        <Info>
+          The plugin always uses the `/inspector` path regardless of the server's base path setting.
+        </Info>
+      </Step>
+    </Steps>
+
+    <Note>
+      If you cannot create a session after installing the plugin, see the [Troubleshooting guide](/troubleshooting#cannot-start-a-session-using-plugin-version) for the common CORS fix.
+    </Note>
+  </Tab>
+</Tabs>
+
+Once installed, continue to [Starting a Session](/quickstart/starting-a-session) to configure and launch your first Inspector session.

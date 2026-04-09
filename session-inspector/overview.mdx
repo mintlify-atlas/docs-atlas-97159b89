@@ -1,0 +1,59 @@
+---
+title: "Session Inspector"
+description: "Overview of the Session Inspector — the primary screen for interacting with an active Appium session."
+---
+
+The **Session Inspector** is the screen shown once you are connected to a session. It provides the
+majority of Appium Inspector's functionality, giving you tools to inspect elements, run commands,
+create gestures, record interactions, and review session details.
+
+The interface is divided into several distinct areas:
+
+- **Header** — toolbar buttons for device system actions, context switching, source refresh, recording toggle, and session management
+- **Screenshot Panel** — live or static screenshot of the device screen, with element highlighting and interaction modes
+- **Source tab** — XML page source tree for element inspection and locator discovery
+- **Commands tab** — run Appium driver commands and execute methods from a GUI
+- **Gestures tab** — create, save, and execute custom multi-pointer gestures
+- **Recorder tab** — generate Appium client code from recorded interactions
+- **Session Info tab** — view session details and copy session boilerplate code
+
+## Header
+
+The header runs across the top of the Session Inspector and contains all the toolbar controls. Key
+items include:
+
+- **Device system buttons** — Android (back / home / app switcher) or iOS (home / Siri) hardware simulation
+- **Context switcher** — switch between native and hybrid (webview) contexts
+- **Toggle automatic source refresh** — pause or resume automatic XML source retrieval (MJPEG mode only)
+- **Refresh Source & Screenshot** — manually fetch the latest screenshot and source
+- **Search for element** — open the element search modal with locator strategy support
+- **Toggle Recorder** — start or stop recording interactions into client code
+- **Reload on disconnect** — automatically reload the session after a dropped connection
+- **Detach from session** — disconnect from the session without deleting it
+- **Quit session** — terminate the session and return to the Session Builder
+
+## Panels and tabs
+
+<CardGroup cols={2}>
+  <Card title="Screenshot Panel" href="/session-inspector/screenshot">
+    View the device screen, highlight elements, interact by tap/swipe, and switch between Element
+    Mode and Coordinates Mode.
+  </Card>
+  <Card title="Source Tab" href="/session-inspector/source">
+    Browse the XML page source tree, inspect element attributes, view suggested locators, and
+    compare locator strategy performance.
+  </Card>
+  <Card title="Commands Tab" href="/session-inspector/commands">
+    Execute Appium driver commands and execute methods through a GUI, with dynamic command discovery
+    for Appium 2.16.0+.
+  </Card>
+  <Card title="Gestures Tab" href="/session-inspector/gestures">
+    Build, save, and run custom multi-pointer gestures with the visual Gesture Builder.
+  </Card>
+  <Card title="Recorder Tab" href="/session-inspector/recorder">
+    Record Inspector interactions and generate executable Appium client code in multiple languages.
+  </Card>
+  <Card title="Session Information" href="/session-inspector/session-info">
+    Review the active session ID, capabilities, server details, and copy ready-to-run boilerplate code.
+  </Card>
+</CardGroup>

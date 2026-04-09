@@ -1,0 +1,134 @@
+---
+title: "Source Tab"
+description: "Browse the XML page source tree, inspect element attributes, discover locators, and compare locator strategy performance."
+---
+
+The Source tab is the default tab opened after starting an Inspector session. It consists of two
+connected panels: the **Application Source** panel on the left, and the **Selected Element** panel
+on the right (shown only when an element is selected).
+
+A draggable divider between the two panels lets you adjust their relative widths, or collapse either
+panel entirely.
+
+## Application source
+
+The Application Source panel displays the page source XML returned by the Appium driver as an
+interactive tree.
+
+### Source header buttons
+
+| Button | Description |
+|--------|-------------|
+| Copy XML | Copies the full application XML to the clipboard |
+| Download XML | Downloads the source as an `.xml` file |
+
+### Source action buttons
+
+| Button | Description |
+|--------|-------------|
+| Collapse All | Collapses all nodes in the source tree to the root level |
+| Toggle Attributes | Shows or hides non-essential element attributes in each node |
+| Search Source | Filters the tree using a plaintext search against the raw XML |
+
+### Source tree
+
+Each node in the tree displays the element's class name plus several important attributes such as
+`value` and `content-desc`. Non-important attributes are hidden by default to keep the tree
+readable; use the Toggle Attributes button to reveal them.
+
+Clicking any node performs three actions simultaneously:
+
+- Highlights the node in the source tree
+- Shows the element highlighter in the [Screenshot Panel](/session-inspector/screenshot) (if Element Mode is active)
+- Populates the [Selected Element panel](#selected-element) with the element's details
+
+Nodes that have child elements display an expand/collapse arrow on their left side.
+
+For supported Appium drivers, the maximum tree depth returned can be adjusted with the
+`snapshotMaxDepth` driver setting.
+
+### Refreshing the source
+
+<Note>
+  The source XML is not refreshed automatically. It is only updated when an explicit refresh is
+  triggered. Interacting with the application directly on the device (outside of the Inspector)
+  will not update the source.
+</Note>
+
+A source refresh is triggered by any of the following:
+
+- Interacting with a selected element (tap, send keys, or clear)
+- Tapping or swiping on the Screenshot Panel
+- Simulating device system actions (home, back, Siri, etc.)
+- Executing a driver command (depends on the command)
+- Executing a custom gesture
+- Pressing the Refresh button in the header
+
+When using MJPEG session capabilities (such as `appium:mjpegServerPort`), an additional
+**Toggle Automatic Source Refresh** button appears in the header. Disabling automatic refresh is
+useful when you want to interact with the device through the screenshot without waiting for the
+source to reload on every action.
+
+## Selected element
+
+Selecting any element opens the Selected Element panel, which provides full details about that
+element.
+
+An element can be selected in three ways:
+
+- Clicking a node in the Application Source tree
+- Clicking an element highlighter in the Screenshot Panel
+- Using the **Reveal Element in Source** button in the element search results
+
+Clicking elsewhere to deselect the element hides the panel.
+
+### Element header buttons
+
+| Button | Description |
+|--------|-------------|
+| Copy Attributes | Copies all element attributes to the clipboard as a JSON array |
+| Download Element Screenshot | Saves a cropped screenshot of the element as a `.PNG` file |
+
+### Element action buttons
+
+| Button | Description |
+|--------|-------------|
+| Tap Element | Sends a tap action to the element |
+| Send / Clear Text | Opens a prompt to type text into the element, or clears its existing text |
+| Get Element Timings | Runs a speed comparison for each suggested locator |
+
+### Suggested locators
+
+The Suggested Locators table lists one or more locator strategy and selector combinations that can
+be used to find the selected element. Clicking any selector copies it to the clipboard.
+
+Common locator strategies include:
+
+- `id`
+- `xpath`
+- `accessibility id`
+- `class name`
+- `-android uiautomator`
+- `-ios predicate string`
+- `-ios class chain`
+
+Pressing the **Get Element Timings** button runs a timed search for each suggested locator and adds
+an elapsed-time column to the table. Use this to identify the fastest and most reliable locator for
+your test scripts.
+
+### Box model
+
+The box model section shows the element's position and dimensions at a glance:
+
+- Width and height in pixels
+- Exact pixel coordinates for each corner (top-left, top-right, bottom-left, bottom-right)
+- Midpoint coordinates
+
+### Element attributes
+
+The element attributes table lists every attribute returned by the driver for the selected element,
+along with its value. Clicking any value copies it to the clipboard.
+
+The set of attributes available depends on your Appium driver. Some drivers allow configuring which
+attributes are included (for example, enabling attributes that are hidden by default for performance
+reasons). Refer to your driver's documentation for details.

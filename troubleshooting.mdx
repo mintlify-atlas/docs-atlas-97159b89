@@ -1,0 +1,85 @@
+---
+title: "Troubleshooting"
+description: "Solutions for common problems encountered when installing or using Appium Inspector."
+---
+
+## Before reporting a bug
+
+If you run into unexpected behaviour, first check whether the problem exists independently of
+Appium Inspector by reproducing it using a different Appium client (for example, a plain script
+using the WebdriverIO or python-client library).
+
+- **Issue reproduces without Inspector** — it is an Appium or driver problem. Report it in the
+  [main Appium repository](https://github.com/appium/appium/issues).
+- **Issue is gone without Inspector** — it is likely specific to the Inspector. Please
+  [open a bug report](https://github.com/appium/appium-inspector/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=bug%3A+%3Ctitle%3E)
+  in this repository with as much detail as possible.
+
+---
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Cannot open the app after installation">
+    On macOS and Windows, the operating system may show a security prompt and block the application
+    from opening because it was downloaded from the internet and is not from a verified app store.
+
+    Refer to the [Installation guide](/quickstart/installation) for platform-specific instructions
+    on how to allow Appium Inspector to run on your system.
+  </Accordion>
+
+  <Accordion title="Cannot start a session using the plugin version">
+    This is caused by [cross-origin resource sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+    (CORS). The browser blocks connections to an Appium server when the base URLs of the Inspector
+    and the server do not match (for example, when the Inspector is served from `localhost` but
+    Appium is listening on `127.0.0.1`).
+
+    <Warning>
+      Without the `--allow-cors` flag, the browser will silently block session creation requests
+      when the origins do not match. This is a browser security restriction and cannot be worked
+      around from the Inspector side alone.
+    </Warning>
+
+    Start your Appium server with the `--allow-cors` flag to send the correct CORS headers:
+
+    ```bash
+    appium --use-plugins=inspector --allow-cors
+    ```
+
+    <Note>
+      If you encounter this issue with a cloud provider, the fix must be applied on the provider's
+      side because they host the Appium server. Contact your cloud provider's support team.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Start Session button is cut off">
+    The **Start Session** button at the bottom of the Session Builder may be hidden or partially
+    visible if your display is too small to fit the entire layout.
+
+    Check the [System Requirements](/quickstart/requirements) page for the minimum supported screen
+    resolution and adjust your display settings accordingly. You can also try reducing the zoom
+    level via **View → Zoom Out** in the menu bar (desktop app only).
+  </Accordion>
+
+  <Accordion title="Cannot see the full source tree with XCUITest driver and React Native app">
+    This is a [known issue](https://github.com/appium/appium/issues/14825) caused by a limitation
+    in Apple's XCTest framework. It cannot be resolved from the Appium or Inspector side, but
+    there are several XCUITest driver settings that can help:
+
+    - Set [`snapshotMaxDepth`](https://appium.github.io/appium-xcuitest-driver/latest/settings/)
+      to `62` — the maximum stable value supported by XCTest.
+    - Set [`pageSourceExcludedAttributes`](https://appium.github.io/appium-xcuitest-driver/latest/settings/)
+      to exclude attributes you do not need (for example, `"visible,accessible"`). This reduces
+      the payload size and can prevent timeouts.
+    - Increase [`customSnapshotTimeout`](https://appium.github.io/appium-xcuitest-driver/latest/settings/)
+      to give XCTest more time to complete the snapshot.
+
+    If none of these settings resolve the issue, the root cause is the application's view
+    hierarchy depth. Work with your app developers to reduce complexity:
+
+    - Remove unnecessary nesting levels in the component tree.
+    - Enable the Fabric renderer with [View Flattening](https://reactnative.dev/architecture/view-flattening).
+    - Switch from the JavaScript stack navigator to the native stack navigator.
+    - Reduce the number of view tags and test IDs assigned to elements.
+  </Accordion>
+</AccordionGroup>

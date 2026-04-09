@@ -1,0 +1,71 @@
+---
+title: "Menu Bar"
+description: "Reference for the Appium Inspector desktop app menu bar, including the update checker."
+---
+
+<Note>
+  The menu bar is only available in the **standalone desktop application** version of Appium
+  Inspector. It is not present in the plugin (browser) version.
+</Note>
+
+The menu bar is always visible — either at the top of the application window on Windows and Linux,
+or in the system menu bar on macOS.
+
+## Standard menu entries
+
+Appium Inspector includes several standard operating-system menu entries for window and text
+management:
+
+<Tabs>
+  <Tab title="macOS">
+    | Menu | Notable entries |
+    |------|----------------|
+    | **Appium Inspector** | About, Hide, Quit, Check for Updates… |
+    | **File** | New Window |
+    | **Edit** | Undo, Redo, Cut, Copy, Paste, Delete, Select All |
+    | **View** | Reload, Toggle Developer Tools, Toggle Full Screen, Zoom In/Out, Reset Zoom Level |
+    | **Window** | Minimize, Zoom, Close Window, Bring All to Front |
+    | **Help** | Appium Documentation, Inspector Documentation, Appium Discussion Forum, Report Issues, Improve Translations |
+  </Tab>
+  <Tab title="Windows / Linux">
+    | Menu | Notable entries |
+    |------|----------------|
+    | **File** | New Window, Check for Updates…, Quit Appium Inspector |
+    | **Edit** | Undo, Redo, Cut, Copy, Paste, Delete, Select All |
+    | **View** | Reload, Toggle Developer Tools, Toggle Full Screen, Zoom In/Out, Reset Zoom Level |
+    | **Window** | Minimize, Zoom, Close Window |
+    | **Help** | Appium Documentation, Inspector Documentation, Appium Discussion Forum, Report Issues, Improve Translations, About Appium Inspector |
+  </Tab>
+</Tabs>
+
+## Update checker
+
+The update checker lets you verify whether a newer version of Appium Inspector is available, and
+optionally download and install it automatically.
+
+<Tabs>
+  <Tab title="macOS">
+    Access the update checker from the **Appium Inspector** application menu → **Check for Updates…**
+  </Tab>
+  <Tab title="Windows / Linux">
+    Access the update checker from the **File** menu → **Check for Updates…**
+  </Tab>
+</Tabs>
+
+When a newer version is found, you can choose to download it immediately. The Inspector will notify
+you when the download is complete, and you can apply the update by restarting the application.
+
+### Supported update formats
+
+Automatic updates are supported for the following installer formats:
+
+| Platform | Format |
+|----------|--------|
+| macOS | `.dmg` |
+| Windows | `.exe` installer |
+| Linux | `.AppImage` |
+
+<Note>
+  If you installed Appium Inspector using a package manager or a format not listed above (for
+  example a Linux `.deb` or `.rpm`), use your package manager to update instead.
+</Note>

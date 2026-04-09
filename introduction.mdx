@@ -1,0 +1,65 @@
+---
+title: "Welcome to Appium Inspector"
+description: "A GUI inspector tool for mobile and desktop apps, powered by Appium. Inspect app elements, run commands, record actions, and more."
+---
+
+Appium Inspector is a graphical assistant tool for Appium that lets you visually inspect the UI of any app your Appium server can reach. Whether you're building automated tests or exploring an app's structure, the Inspector gives you a real-time view of your app's page source alongside a live screenshot — and much more.
+
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/quickstart/requirements">
+    Get set up and start your first inspection session in minutes.
+  </Card>
+  <Card title="Session Builder" icon="sliders" href="/session-builder/overview">
+    Configure your Appium server connection and session capabilities.
+  </Card>
+  <Card title="Session Inspector" icon="magnifying-glass" href="/session-inspector/overview">
+    Explore the inspector interface: screenshot, source, commands, and more.
+  </Card>
+  <Card title="Troubleshooting" icon="wrench" href="/troubleshooting">
+    Common issues and how to resolve them.
+  </Card>
+</CardGroup>
+
+## What is Appium Inspector?
+
+Appium Inspector is an Appium client with a full graphical user interface, built on [WebdriverIO](https://webdriver.io/). It connects to any running Appium server and lets you:
+
+- View a screenshot of the device or app under test (static or MJPEG live stream)
+- Browse the full XML page source and select elements visually
+- Search for elements using any supported locator strategy
+- Run Appium driver commands and execute methods interactively
+- Record your actions and export them as Appium client code
+- Build and replay custom multi-pointer gestures
+- Connect to 15+ cloud testing platforms
+
+## Two ways to use it
+
+<CardGroup cols={2}>
+  <Card title="Desktop App" icon="desktop" href="/quickstart/installation">
+    Download the standalone app for macOS, Windows, or Linux. No server setup needed — just install and launch.
+  </Card>
+  <Card title="Server Plugin" icon="plug" href="/quickstart/installation">
+    Run Inspector as an Appium server plugin and access it directly in your browser alongside your running Appium server.
+  </Card>
+</CardGroup>
+
+## Get started
+
+<Steps>
+  <Step title="Check system requirements">
+    Review the [system requirements](/quickstart/requirements) to make sure your environment is supported.
+  </Step>
+  <Step title="Install Appium Inspector">
+    Download the desktop app or install the server plugin — see the [installation guide](/quickstart/installation).
+  </Step>
+  <Step title="Configure your session">
+    Set up your Appium server connection and define session capabilities in the [Session Builder](/session-builder/overview).
+  </Step>
+  <Step title="Start inspecting">
+    Launch your session and begin exploring your app using the [Session Inspector](/session-inspector/overview).
+  </Step>
+</Steps>
+
+<Note>
+  Appium Inspector requires a running Appium server to connect to. If you don't have one set up yet, visit the [Appium documentation](https://appium.io/docs/en/latest/quickstart/install/) to get started.
+</Note>

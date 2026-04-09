@@ -1,0 +1,68 @@
+---
+title: "Capability Builder"
+description: "Build, edit, and manage Appium session capabilities using a form-based editor and a live JSON view."
+---
+
+The **Capability Builder** tab is the default tab shown in the main body of the Session Builder screen. This is where you define the capabilities that describe the target device, platform, and application for your Appium session.
+
+To learn more about capabilities in general, refer to the [Appium capabilities documentation](https://appium.io/docs/en/latest/guides/caps/).
+
+The tab is split into two halves by a draggable divider. You can drag the divider to resize either half, or click it to collapse one side entirely.
+
+## Capability fields
+
+The left side of the tab provides a form-based editor for adding and configuring individual capabilities.
+
+Each capability entry has three parts:
+
+| Part | Description |
+|------|-------------|
+| **Name** | The capability key, e.g. `platformName` or `appium:deviceName` |
+| **Type** | The value type: `text`, `boolean`, `number`, or `JSON object` |
+| **Value** | The capability value; the input field changes based on the selected type |
+
+Changing any field automatically updates the [JSON structure](#capability-json-structure) on the right side in real time.
+
+Use the **add** button to insert a new capability row, and the **delete** button on any row to remove it.
+
+Each row also has a **checkbox** next to the delete button. Unchecking the checkbox disables that capability without removing it, which is useful for quickly testing session behavior with or without a specific capability.
+
+<Tip>
+Capabilities with nested objects — such as `chrome:options` — cannot be fully expressed through the form fields. Add these directly by switching to [Edit mode](#edit-mode) in the JSON structure panel.
+</Tip>
+
+### Automatic `appium:` prefix
+
+At the bottom of the capability list there is a checkbox labeled **Add `appium:` prefix to non-standard capabilities**. When checked (the default), the Inspector automatically prepends the `appium:` vendor prefix to any capability that is not a standard W3C capability and does not already have a vendor prefix. For example, `deviceName` becomes `appium:deviceName` when the session starts.
+
+## Capability JSON structure
+
+The right side of the tab shows the full capabilities object in standard JSON format, which is useful when copying values into test code.
+
+```json
+{
+  "platformName": "Android",
+  "appium:deviceName": "emulator-5554",
+  "appium:automationName": "UiAutomator2",
+  "appium:app": "/path/to/app.apk"
+}
+```
+
+### Edit mode
+
+Click the **Edit** button at the top-right of the JSON panel to enter edit mode. In this mode you can type directly into the JSON structure to make any changes, including adding nested objects.
+
+When you are done editing, two buttons appear:
+
+- **Save** — validates and applies the changes. If the JSON is not valid, an error is shown and the changes are not applied.
+- **Discard** — reverts any unsaved changes and exits edit mode.
+
+After saving, the changes are also reflected in the capability fields on the left side.
+
+## Footer
+
+The Session Builder footer contains the following controls:
+
+- **Capabilities Documentation** — opens the Appium capabilities documentation in your browser
+- **Save As** — saves the current capabilities as a new named capability set (see [Saved Capability Sets](/session-builder/saved-capability-sets))
+- **Start Session** — attempts to start an Inspector session using the current server details and capabilities

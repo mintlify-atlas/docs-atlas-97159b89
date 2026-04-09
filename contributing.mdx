@@ -1,0 +1,184 @@
+---
+title: "Contributing"
+description: "How to set up a local development environment, run tests, build Appium Inspector, and contribute translations."
+---
+
+Contributions to Appium Inspector are welcome. The application is primarily built with React, and
+the desktop version uses Electron.
+
+## Code
+
+### Development setup
+
+<Steps>
+  <Step title="Clone the repository">
+    Clone the project from GitHub:
+
+    ```bash
+    git clone https://github.com/appium/appium-inspector.git
+    cd appium-inspector
+    ```
+  </Step>
+
+  <Step title="Install dependencies">
+    ```bash
+    npm ci
+    ```
+
+    <Note>
+      Some dependencies require native compilation via
+      [`node-gyp`](https://github.com/nodejs/node-gyp#installation). Before running `npm ci`,
+      ensure you have the following installed:
+
+      - [Python](https://www.python.org/)
+      - A C/C++ compiler toolchain for your operating system (for example, Xcode Command Line
+        Tools on macOS, or `build-essential` on Ubuntu)
+    </Note>
+  </Step>
+
+  <Step title="Start development mode">
+    Choose the version you want to work on:
+
+    ```bash
+    npm run dev:browser   # browser / plugin version
+    npm run dev:electron  # desktop app version
+    ```
+
+    <Tip>
+      Development mode runs through a separate dev server, which means all Inspector sessions are
+      subject to CORS restrictions. Before starting a new session in dev mode, launch your Appium
+      server with the `--allow-cors` flag to avoid connection errors:
+
+      ```bash
+      appium server --allow-cors
+      ```
+    </Tip>
+  </Step>
+</Steps>
+
+### Running tests
+
+<CodeGroup>
+
+```bash Lint
+npm run test:lint
+```
+
+```bash Format check
+npm run test:format
+```
+
+```bash Unit tests
+npm run test:unit
+```
+
+```bash Integration tests
+npm run test:integration
+```
+
+```bash E2E tests
+npm run test:e2e
+```
+
+```bash All (lint + unit + integration)
+npm run test
+```
+
+</CodeGroup>
+
+### Building for production
+
+<CodeGroup>
+
+```bash Browser version
+# Output: /dist-browser
+npm run build:browser
+```
+
+```bash Plugin version
+# Output: /plugins/dist-browser
+npm run build:plugin
+```
+
+```bash Electron (desktop) version
+# Output: /dist
+npm run build:electron
+```
+
+</CodeGroup>
+
+You can also build and immediately preview each version:
+
+```bash
+npm run preview:browser
+npm run preview:plugin
+npm run preview:electron
+```
+
+### Packaging the desktop app
+
+To build a distributable installer/package for your current platform into `/release`:
+
+```bash
+npm run pack:electron
+```
+
+<Warning>
+  On macOS, `pack:electron` requires code-signing environment variables to be configured. Without
+  valid signing credentials the build will fail or produce an unsigned (unnotarised) binary that
+  macOS Gatekeeper may block.
+</Warning>
+
+### Linking the plugin to a local Appium server
+
+If you want to test the plugin version against a local Appium installation:
+
+```bash
+cd plugins && npm install && cd ..
+appium plugin install --source=local plugins
+```
+
+This installs the `@appium/base-plugin` dependency and registers your local build as an Appium
+plugin. Start Appium with `--use-plugins=inspector --allow-cors` to activate it.
+
+---
+
+## Documentation
+
+The documentation is built with Appium's
+[`docutils`](https://github.com/appium/appium/tree/master/packages/docutils), which is based on
+[MkDocs](https://www.mkdocs.org/).
+
+After completing the development setup above, you can work on the docs:
+
+```bash
+npm run install-docs-deps   # install Python dependencies
+npm run dev:docs            # serve docs locally with live reload
+```
+
+---
+
+## Localization
+
+Appium Inspector uses `i18next` for all user-facing strings. All strings in the codebase are
+referenced by a translation key (`t('localizationKey')`), and the corresponding values are defined
+in translation files that are synchronised with
+[Crowdin](https://crowdin.com/project/appium-desktop).
+
+### Contributing translations
+
+If you would like to suggest or improve a translation, visit the project on Crowdin and leave your
+suggestions there. No code changes are needed — Crowdin handles synchronisation with the
+repository automatically.
+
+### Adding new strings
+
+If you are implementing a new feature that requires new user-facing text:
+
+1. Add the new key-value pairs to the **English translation file** first:
+   [`app/common/public/locales/en/translation.json`](https://github.com/appium/appium-inspector/blob/main/app/common/public/locales/en/translation.json)
+2. Use the key in your code with `t('yourNewKey')`.
+3. Open a pull request with your changes.
+
+Once the pull request is merged, the new strings are automatically pushed to Crowdin and become
+available for the community to translate into other languages.

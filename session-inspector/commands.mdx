@@ -1,0 +1,72 @@
+---
+title: "Commands Tab"
+description: "Execute Appium driver commands and execute methods through a GUI, with dynamic command discovery and result inspection."
+---
+
+The Commands tab provides a GUI for running Appium driver commands and
+[execute methods](https://appium.io/docs/en/latest/guides/execute-methods/) against the active
+session, without writing any code.
+
+The list of available commands and execute methods is specific to the active driver. All drivers
+support a set of common protocol commands, but each driver can also define its own commands and
+execute methods. The Inspector retrieves these from the driver and adjusts the list accordingly.
+
+Active Appium **plugins** may also define their own commands and execute methods. If plugins are
+running during your session, their commands and methods are included in the Commands tab
+automatically.
+
+<Warning>
+  Dynamic command and execute method discovery requires **Appium 2.16.0 or later**. When connected
+  to an older Appium version, the Inspector falls back to a predefined static list of commands.
+  Note that not every command in the static list is compatible with every driver.
+</Warning>
+
+<Tip>
+  For functionality specific to your driver that is not exposed as a standard command — such as
+  custom driver features — look in the **Execute Methods** sub-tab. Execute methods do not have the
+  same WebdriverIO support limitation that applies to the Commands sub-tab.
+</Tip>
+
+## Navigation
+
+The top of the Commands tab contains two sub-tabs:
+
+- **Commands** — lists standard Appium driver commands
+- **Execute Methods** — lists driver and plugin execute methods
+
+A search bar is available above both sub-tabs and filters both lists simultaneously as you type.
+
+## Command properties
+
+Commands and execute methods may carry additional metadata provided by their driver or plugin:
+
+- **Deprecated** — deprecated commands are shown with a yellow-tinted background. Consult the
+  driver or plugin documentation for recommended alternatives.
+- **Additional info** — some commands include a description or other notes, shown in a tooltip on
+  mouseover.
+- **Parameters** — clicking a command that accepts parameters opens a parameters popup. Parameters
+  may be marked as required or optional.
+
+## Limitations
+
+The **Commands sub-tab only lists commands that are supported by the
+[WebdriverIO client](https://webdriver.io/).** The Inspector uses WebdriverIO internally to execute
+all commands, so any command not defined in WebdriverIO (for example, a custom third-party driver
+command) is filtered out of the list. This limitation does not apply to the Execute Methods sub-tab.
+
+## Command result
+
+After a command or execute method finishes running, a result popup always appears showing the
+returned value.
+
+The popup includes two action buttons:
+
+### Toggle Table Formatting
+
+Formats the result as a sortable, filterable table. This button is only enabled when the result is
+an array or object. While table formatting is active, the Copy Result button is disabled. Clicking
+any table cell copies its contents to the clipboard.
+
+### Copy Result
+
+Copies the raw result to the clipboard. This button is disabled while table formatting is active.

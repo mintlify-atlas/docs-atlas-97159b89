@@ -1,0 +1,66 @@
+---
+title: "Recorder Tab"
+description: "Record Inspector interactions and generate ready-to-run Appium client code in multiple languages."
+---
+
+The Recorder tab translates your Inspector interactions into executable code for use with Appium
+client libraries. By default the tab is empty — recording must be explicitly started from the
+[header toggle](/session-inspector/overview#header).
+
+<Tip>
+  The Recorder tab does not need to stay open while recording. You can switch to any other tab
+  (Source, Commands, Gestures, etc.), perform your actions, and come back to the Recorder tab at
+  any point to review the generated code.
+</Tip>
+
+## Enabling recording
+
+Click the **Toggle Recorder** button in the Session Inspector header to start recording. The button
+icon changes to indicate that recording is active. Click it again to stop.
+
+The following interactions are captured while recording is enabled:
+
+- Element actions: tap, send keys, clear
+- Tap and swipe actions performed on the Screenshot Panel
+- Device system button presses (home, back, app switcher, Siri)
+- Driver command executions from the Commands tab
+
+<Note>
+  Recording of custom gestures created in the Gestures tab is not currently supported.
+</Note>
+
+## Selecting a target language
+
+The dropdown in the top-right corner of the Recorder tab controls the language used to generate
+code. The following languages are available:
+
+| Language |
+|----------|
+| JS - WebdriverIO |
+| JS - Oxygen HQ |
+| Java - JUnit4 |
+| Java - JUnit5 |
+| Python |
+| Ruby |
+| .NET - NUnit |
+| Robot Framework |
+
+You can select a language **before** starting to record, or at any point while recording or
+afterwards. Changing the language after actions have been recorded **regenerates all existing code**
+in the new language — no interactions are lost.
+
+## Generated code
+
+Once recording is active and interactions are performed, the tab is populated with client code
+that reproduces those interactions. The code structure follows the conventions of the selected
+framework, including the appropriate method calls, locator strategies, and action chains.
+
+## Management buttons
+
+Three buttons appear next to the language dropdown once at least one action has been recorded:
+
+| Button | Description |
+|--------|-------------|
+| Toggle Boilerplate | Shows or hides session setup and teardown code around the recorded actions. This is the same boilerplate shown in the [Session Info tab](/session-inspector/session-info). When enabled, the boilerplate is included when copying. |
+| Copy | Copies the currently displayed code (including boilerplate if enabled) to the clipboard |
+| Clear | Deletes all recorded actions. The recording state (active or stopped) is not changed. |

@@ -1,0 +1,77 @@
+---
+title: "System Requirements"
+description: "Operating system, browser, disk space, and Appium server requirements for Appium Inspector."
+---
+
+Appium Inspector is distributed in two formats — a standalone desktop app and an Appium server plugin — each with different requirements.
+
+<Note>
+  Regardless of which format you use, Appium Inspector requires a running **Appium server** to connect to. If you don't have one set up yet, follow the [Appium installation guide](https://appium.io/docs/en/latest/quickstart/install/) before proceeding.
+</Note>
+
+## Format requirements
+
+<Tabs>
+  <Tab title="Desktop app">
+    The desktop app is an Electron-based application. Its OS requirements follow those of the Chromium engine it uses internally.
+
+    **Supported operating systems:**
+
+    | Platform | Minimum version |
+    |----------|----------------|
+    | Windows  | Windows 10+    |
+    | macOS    | macOS 12+      |
+    | Ubuntu   | 18.04+         |
+    | Debian   | 10+            |
+    | openSUSE | 15.5+          |
+    | Fedora   | 39+            |
+
+    **Additional requirements:**
+
+    - **Disk space:** approximately 500 MB of free space
+    - **Minimum window size:** 890 × 710 pixels
+  </Tab>
+  <Tab title="Server plugin">
+    The server plugin runs inside your Appium server and is accessed through a web browser.
+
+    **Supported browsers** (released 2022 or later):
+
+    - Chrome
+    - Edge
+    - Firefox
+    - Safari
+
+    **Additional requirements:**
+
+    - **Disk space:** approximately 6 MB of free space
+    - **Recommended viewport size:** 870 × 610 pixels or larger
+  </Tab>
+</Tabs>
+
+## Appium server requirements
+
+Appium Inspector connects to an Appium server to start and manage sessions. You can connect to:
+
+- A **local Appium server** running on your own machine
+- A **remote Appium server** hosted elsewhere
+- A **cloud testing platform** (10+ providers are supported)
+
+For a local server, you will also need to install one or more **Appium drivers** for your target platform(s). You can find all known drivers in the [Appium Ecosystem page](https://appium.io/docs/en/latest/ecosystem/drivers/).
+
+### Recommended driver versions
+
+For best compatibility with Appium Inspector, the following minimum driver versions are recommended:
+
+| Driver | Minimum version |
+|--------|----------------|
+| [Espresso](https://github.com/appium/appium-espresso-driver) | `4.0.0` |
+| [Mac2](https://github.com/appium/appium-mac2-driver) | `2.0.0` |
+| [UiAutomator2](https://github.com/appium/appium-uiautomator2-driver) | `4.0.0` |
+| [Windows](https://github.com/appium/appium-windows-driver/) | `4.0.0` |
+| [XCUITest](https://appium.github.io/appium-xcuitest-driver/latest/) | `4.21.27` |
+
+Refer to each driver's documentation for its own setup requirements and instructions.
+
+<Tip>
+  Once you've confirmed your system meets these requirements, continue to the [Installation](/quickstart/installation) guide.
+</Tip>

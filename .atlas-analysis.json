@@ -1,0 +1,82 @@
+{
+  "projectType": "saas",
+  "projectName": "Appium Inspector",
+  "projectDescription": "A GUI inspector tool for mobile and desktop apps, powered by Appium, available as a standalone desktop application or Appium server plugin.",
+  "theme": "luma",
+  "primaryColor": "#662D91",
+  "lightColor": "#8B5CF6",
+  "darkColor": "#4C1D95",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart/requirements",
+              "quickstart/installation",
+              "quickstart/starting-a-session"
+            ]
+          },
+          {
+            "group": "Session Builder",
+            "pages": [
+              "session-builder/overview",
+              "session-builder/server-details",
+              "session-builder/capability-builder",
+              "session-builder/saved-capability-sets",
+              "session-builder/attach-to-session"
+            ]
+          },
+          {
+            "group": "Session Inspector",
+            "pages": [
+              "session-inspector/overview",
+              "session-inspector/screenshot",
+              "session-inspector/source",
+              "session-inspector/commands",
+              "session-inspector/gestures",
+              "session-inspector/recorder",
+              "session-inspector/session-info"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "menu-bar",
+              "app-settings",
+              "troubleshooting",
+              "contributing"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Visual app screenshot inspection with element highlighting and interaction modes",
+    "Capability builder with JSON editor and saved capability sets",
+    "Integration with 15+ cloud provider platforms (Sauce Labs, BrowserStack, HeadSpin, etc.)",
+    "Action recorder that generates Appium client code in multiple programming languages",
+    "Custom gesture builder supporting up to 5 simultaneous pointers",
+    "Driver commands tab with execute methods and dynamic command discovery",
+    "Element search with locator strategy comparison and speed benchmarking",
+    "Available as standalone desktop app (Windows/macOS/Linux) or Appium server plugin"
+  ],
+  "publicApiSurface": [
+    "Session Builder - Server Details configuration (host, port, path, SSL)",
+    "Session Builder - Capability Builder (form fields + JSON editor)",
+    "Session Builder - Saved Capability Sets (save, load, manage)",
+    "Session Builder - Attach to Session (connect to existing Appium session)",
+    "Session Inspector - Screenshot panel (element mode, coordinates mode, MJPEG)",
+    "Session Inspector - Source tab (XML page source, element search, locator strategies)",
+    "Session Inspector - Commands tab (Appium driver commands and execute methods)",
+    "Session Inspector - Gestures tab (create, save, execute custom gestures)",
+    "Session Inspector - Recorder tab (generate client code in multiple languages)",
+    "Session Inspector - Session Info tab (session details and boilerplate code)",
+    "Menu Bar - Update checker (desktop app only)",
+    "App Settings (language, theme, advanced options)"
+  ]
+}

@@ -1,0 +1,46 @@
+---
+title: "Attach to Existing Session"
+description: "Connect Appium Inspector to an already-running Appium session to inspect the app state without starting a new session."
+---
+
+The **Attach to Session** tab lets you connect the Inspector to an Appium session that is already running. This is useful when you want to inspect an app that a test script has already launched, or when you need to debug a live session without interrupting it.
+
+## Session discovery
+
+When you open the Attach to Session tab, the Inspector automatically attempts to discover active sessions on the server specified in the current [Server Details](/session-builder/server-details) configuration.
+
+Open the dropdown to see a list of all discovered sessions along with their details. The most recently created sessions appear at the top of the list. If exactly one session is found, the dropdown auto-populates with that session's details.
+
+A **refresh** button is available to retry the discovery process at any time, for example after a new test session has been started.
+
+<Tip>
+Session discovery uses whichever server tab is currently active. Make sure you have the correct server selected and that the server details are filled in before opening the Attach to Session tab or pressing the refresh button.
+</Tip>
+
+<Warning>
+Discovering sessions from servers running **Appium 3 or later** requires the server to have the `session_discovery` insecure feature explicitly enabled. See the [Appium security documentation](https://appium.io/docs/en/latest/guides/security/) for details.
+</Warning>
+
+<Note>
+A valid, active session ID is required to attach. If the session has already ended or the session ID is incorrect, the connection attempt will fail.
+</Note>
+
+<Info>
+Support for discovering sessions from cloud provider servers depends on the provider. If no sessions are discovered for your cloud provider, contact them to confirm whether they support this functionality.
+</Info>
+
+## Connecting to a session
+
+Once you select a session from the dropdown, click the **Attach to Session** button in the footer to connect the Inspector to it.
+
+The Inspector will open the standard inspection interface for that session, allowing you to examine the current UI hierarchy, source, and element attributes.
+
+## Use cases
+
+- **Debugging a running test** — attach to a session that a test script has started and paused (e.g. with a breakpoint or a sleep) to inspect the current app state.
+- **Investigating a flaky test** — connect to a session mid-run to see what the app looks like when the failure occurs.
+- **Exploring a long-lived session** — inspect an app that was launched manually or by an external process without needing to restart it.
+
+## Footer
+
+The footer of this tab contains a link to the Appium documentation and the **Attach to Session** button for connecting to the selected session.
